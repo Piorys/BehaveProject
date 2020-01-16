@@ -1,7 +1,8 @@
 from behave import *
 from src.objects.page import StaticLoggedOutHomePage
 from src.objects.page import LoginPage
-from src.helpers import DataParser
+from src.data import Account
+
 
 class LoginSteps:
 
@@ -9,13 +10,10 @@ class LoginSteps:
     static_logged_out_homepage = StaticLoggedOutHomePage.StaticLoggedOutHomePage()
     login_page = LoginPage.LoginPage()
 
-    # Data Objects
-    account = DataParser.parse_data_object('Account')
-
     @given('I am logged in on main page')
-    def step_impl(self):
+    def i_am_logged_in_on_main_page(self):
         self.static_logged_out_homepage.click_log_in()
-        self.login_page.fill_username(self.account['MisterTester']['mail'])
-        self.login_page.fill_password(self.account['MisterTester']['password'])
+        self.login_page.fill_username(Account.mail)
+        self.login_page.fill_password(Account.password)
 
 
