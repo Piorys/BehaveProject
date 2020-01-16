@@ -4,12 +4,12 @@ from src.objects.page import BasePage
 from src.helpers import Logger as log
 
 
-class LoginPage(BasePage):
+class LoginPage(BasePage.BasePage):
 
     # Locators
-    username_input = By.XPATH('//input[contains(@class,\'js-username-field\')]')
-    password_input = By.XPATH('//input[contains(@class,\'js-password-field\')]')
-    login_button = By.CSS_SELECTOR('button[type=\'submit\'][class*=\'EdgeButton\']')
+    username_input = [By.XPATH,'//input[contains(@class,\'js-username-field\')]']
+    password_input = [By.XPATH, '//input[contains(@class,\'js-password-field\')]']
+    login_button = [By.CSS_SELECTOR, 'button[type=\'submit\'][class*=\'EdgeButton\']']
 
     # Url
     url = '/login'

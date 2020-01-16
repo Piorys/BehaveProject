@@ -1,14 +1,13 @@
 from selenium.webdriver.common.by import By
-
 from src.objects.page import BasePage
 from src.helpers import Logger as log
 
 
-class StaticLoggedOutHomePage(BasePage):
+class StaticLoggedOutHomePage(BasePage.BasePage):
 
     # Locators
-    login_button = By.CSS_SELECTOR('a[class*=\'StaticLoggedOutHomePage-buttonLogin\']')
-    page_content = By.CSS_SELECTOR('div[class=\'StaticLoggedOutHomePage-content\']')
+    login_button = [By.CSS_SELECTOR, 'a[class*=\'StaticLoggedOutHomePage-buttonLogin\']']
+    page_content = [By.CSS_SELECTOR, 'div[class=\'StaticLoggedOutHomePage-content\']']
 
     # Url
     url = ''

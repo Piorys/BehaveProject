@@ -13,13 +13,13 @@ class BasePage(object):
         pass
 
     def find_element(self, locator):
-        return self.driver.find_element(*locator)
+        return self.driver.find_element(locator[0], locator[1])
 
     def wait_until_visible(self, locator, timeout=TestConf.timeout):
-        WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located(locator))
+        WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((locator[0], locator[1])))
 
     def wait_until_clickable(self, locator, timeout=TestConf.timeout):
-        WebDriverWait(self.driver, timeout).until(ec.element_to_be_clickable(locator))
+        WebDriverWait(self.driver, timeout).until(ec.element_to_be_clickable((locator[0], locator[1])))
 
     def wait_until_visible_and_send_keys(self, locator, keys):
         self.wait_until_visible(locator)
