@@ -1,5 +1,5 @@
 import json
-
+import __root__ as root
 
 def parse_data_object(filename):
     """
@@ -9,6 +9,6 @@ def parse_data_object(filename):
     :return: - Accessible Data Object
     """
 
-    with open("../data/"+filename+".json", 'r') as f:
+    with open(root.path()+'/src/data/'+filename+".json", 'r') as f:
         return json.load(f)
 
