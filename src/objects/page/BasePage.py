@@ -27,7 +27,7 @@ class BasePage(object):
         self.find_element(locator).send_keys(keys)
 
     def navigate_to_by_url(self, url):
-        self.driver.get()
+        self.driver.get(url)
 
     def is_visible(self, locator, timeout=1):
         try:
@@ -35,3 +35,8 @@ class BasePage(object):
             return True
         except TimeoutException:
             return False
+
+    def click(self, locator):
+        self.wait_until_visible(locator)
+        self.wait_until_clickable(locator)
+        self.find_element(locator).click()
