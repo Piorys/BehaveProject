@@ -1,9 +1,10 @@
 import os
+import pathlib
 
 from src.config import TestConf
 from src.helpers import Timestamp as time
 
-import __root__ as root
+root = str(pathlib.Path(__file__).parent.absolute())+'/../../'
 
 
 def create_output_dir(output_dir):
@@ -12,9 +13,9 @@ def create_output_dir(output_dir):
     :param output_dir: - directory name with path from root folder
     """
     print(time.now() + 'Creating logger directory')
-    if not os.path.exists(root.path() + output_dir):
+    if not os.path.exists(root + output_dir):
         print(time.now() + 'Logger directory not found, creating')
-        os.mkdir(root.path() + output_dir)
+        os.mkdir(root + output_dir)
     else:
         print(time.now() + 'Logger directory already created')
 
@@ -26,7 +27,7 @@ def clear_logger_file(output_dir, logger_filename):
     :param logger_filename: name of the logger file
     """
     print(time.now() + 'Clearing logger file contents')
-    with open(output_dir + logger_filename, 'w'):
+    with open(output_dir + logger_filename, 'w+'):
         pass
 
 
@@ -37,12 +38,12 @@ def create_logger_file(output_dir, logger_filename):
     :param logger_filename: name of the logger file
     """
     print(time.now() + 'Creating logger file')
-    if not os.path.exists(root.path() + output_dir + logger_filename):
+    if not os.path.exists(root + output_dir + logger_filename):
         print(time.now() + 'Logger file not found, creating')
-        open(output_dir + logger_filename, 'w')
+        open(root + output_dir + logger_filename, 'w')
     else:
         print(time.now() + 'Logger file already created')
-        clear_logger_file(output_dir, logger_filename)
+        clear_logger_file(root + output_dir, logger_filename)
 
 
 def start_logger(output_dir=TestConf.output_dir, logger_filename=TestConf.logger_file_name):
@@ -67,7 +68,7 @@ def stop_logger(output_dir=TestConf.output_dir, logger_filename=TestConf.logger_
     print('#' * 20)
     print('Stopping logger...')
     print('#' * 20)
-    open(output_dir + logger_filename, 'r').close()
+    open(root + output_dir + logger_filename, 'r').close()
 
 
 def write_line(line, output_dir=TestConf.output_dir, logger_filename=TestConf.logger_file_name):
@@ -77,6 +78,6 @@ def write_line(line, output_dir=TestConf.output_dir, logger_filename=TestConf.lo
     :param output_dir: - Name of directory where output should be stored
     :param logger_filename: name of the logger file
     """
-    with open(output_dir+logger_filename,'a') as f:
+    with open(root + output_dir+logger_filename, 'a') as f:
         f.write(time.now()+line)
 
