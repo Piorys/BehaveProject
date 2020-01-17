@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from src.objects import BaseObject
 from src.helpers import Logger as log
 from src.data import Paths
+from src.config import TestConf
 
 
 class TimelineComponent(BaseObject.BaseObject):
@@ -39,14 +40,14 @@ class TimelineComponent(BaseObject.BaseObject):
                 + text
                 + '\']']
 
-    def is_tweet_present(self, text):
+    def is_tweet_present(self, text, timeout=TestConf.timeout):
         """
         Checks if given tweet by text is present on timeline
+        :param timeout: - timeout in seconds
         :param text: Tweet text to search for
         """
         log.write_line('Checking if given tweet is present on timeline by text: ' + text)
-        self.soft_wait_until_visible(self.tweets)
-        return self.is_visible(self.format_locator_for_tweet_by_text(text))
+        return self.is_visible(self.format_locator_for_tweet_by_text(text), timeout=timeout)
 
     def click_tweet_delete_button(self):
         """
