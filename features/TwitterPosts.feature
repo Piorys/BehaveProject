@@ -4,7 +4,7 @@ Feature: Twetting
 	I want to be able to create/read/delete my tweets
 	So I can manage my tweets easily
 
-	@T.1.1 
+	@T.1.1
 	Scenario: T.1.1 - Create Post
 		Given I am logged in on main page
 		When I create a new tweet
@@ -18,11 +18,12 @@ Feature: Twetting
 	@T.1.3
 	Scenario: T.1.3 - Delete Tweet
 		Given I am logged in on main page
-		When I delete one of my previously created tweets 
+		And I create a new tweet
+		When I delete newly created tweet
 		Then I can no longer see it on my personal feed
 
 	@T.1.4
 	Scenario: T.1.4 - Post character limit
 		Given I am logged in on main page
 		When I try to create tweet longer than 280 characters
-		Then I will see warning that my limit has been exceeded
+		Then I will be unable to click tweet button
