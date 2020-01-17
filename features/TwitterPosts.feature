@@ -26,4 +26,4 @@ Feature: Twetting
 	Scenario: T.1.4 - Post character limit
 		Given I am logged in on main page
 		When I try to create tweet longer than 280 characters
-		Then I will see warning that my limit has been exceeded
+		Then I will be unable to click tweet button

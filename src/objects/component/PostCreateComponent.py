@@ -42,3 +42,14 @@ class PostCreateComponent(BaseObject.BaseObject):
         """
         log.write_line('Clicking on \'Tweet\' button')
         self.click(self.add_post_button)
+
+    def is_tweet_button_enabled(self):
+        """
+        Checks if 'Tweet' button is disabled
+        :return: false if disabled
+        """
+        log.write_line('Checking whether \'Tweet\' button is disabled')
+        return self.find_element(self.add_post_button).get_attribute('disabled') is None
+
+
+

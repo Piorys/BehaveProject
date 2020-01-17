@@ -35,3 +35,13 @@ def step_impl(context):
 @then(u'I can no longer see it on my personal feed')
 def step_impl(context):
     assert not timeline_component.is_tweet_present(Post.standard_text)
+
+
+@when(u'I try to create tweet longer than 280 characters')
+def step_impl(context):
+    post_create_component.fill_editor(Post.text_290_char)
+
+
+@then(u'I will be unable to click tweet button')
+def step_impl(context):
+    assert not post_create_component.is_tweet_button_enabled()
