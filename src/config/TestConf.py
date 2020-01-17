@@ -6,7 +6,7 @@ output_dir = '/output'
 logger_file_name = '/logger.log'
 
 # Screenshot handler
-screenshot_dir = '/output/screenshots'
+screenshot_dir = output_dir + '/screenshots'
 
 # Environment
 env = "http://twitter.com"
