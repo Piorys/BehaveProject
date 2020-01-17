@@ -8,6 +8,7 @@ class BasePage(object):
     """ Page objects are to inherit from BasePage """
 
     driver = TestConf.driver
+    url = TestConf.env
 
     def __init__(self):
         pass

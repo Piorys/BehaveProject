@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+
 from src.objects.page import BasePage
 from src.helpers import Logger as log
 
@@ -8,9 +9,6 @@ class StaticLoggedOutHomePage(BasePage.BasePage):
     # Locators
     login_button = [By.CSS_SELECTOR, 'a[class*=\'StaticLoggedOutHomePage-buttonLogin\']']
     page_content = [By.CSS_SELECTOR, 'div[class=\'StaticLoggedOutHomePage-content\']']
-
-    # Url
-    url = ''
 
     def validate_page(self):
         """
@@ -23,6 +21,7 @@ class StaticLoggedOutHomePage(BasePage.BasePage):
         """
         Navigates to current page
         """
+        self.navigate_to_by_url(self.url)
 
     def click_log_in(self):
         """
