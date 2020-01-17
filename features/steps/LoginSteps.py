@@ -4,16 +4,17 @@ from src.objects.page import LoginPage
 from src.data import Account
 
 
-class LoginSteps:
+# Page Objects
+static_logged_out_homepage = StaticLoggedOutHomePage.StaticLoggedOutHomePage()
+login_page = LoginPage.LoginPage()
 
-    # Page Objects
-    static_logged_out_homepage = StaticLoggedOutHomePage.StaticLoggedOutHomePage()
-    login_page = LoginPage.LoginPage()
 
-    @given('I am logged in on main page')
-    def i_am_logged_in_on_main_page(self):
-        self.static_logged_out_homepage.click_log_in()
-        self.login_page.fill_username(Account.mail)
-        self.login_page.fill_password(Account.password)
+@given('I am logged in on main page')
+def i_am_logged_in_on_main_page(context):
+    static_logged_out_homepage.navigate_to()
+    static_logged_out_homepage.click_log_in()
+    login_page.fill_username(Account.mail)
+    login_page.fill_password(Account.password)
+    login_page.click_log_in()
 
 
