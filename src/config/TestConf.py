@@ -10,3 +10,6 @@ screenshot_dir = '/output/screenshots'
 
 # Environment
 env = "http://twitter.com"
+
+# Headless
+headless = True
