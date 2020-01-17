@@ -2,8 +2,7 @@
 .idea/
 
 # Logs
-.output/
+output/
 
 # Pycache
 __pycache__
-output/
