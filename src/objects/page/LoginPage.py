@@ -4,6 +4,7 @@ from src.objects import BaseObject
 from src.helpers import Logger as log
 from src.data import Paths
 
+
 class LoginObject(BaseObject.BaseObject):
 
     # Locators
@@ -19,6 +20,7 @@ class LoginObject(BaseObject.BaseObject):
         Validates current page
         :return: True if username input is displayed
         """
+        self.soft_wait_until_visible(self.username_input)
         return self.is_visible(self.username_input)
 
     def navigate_to(self):

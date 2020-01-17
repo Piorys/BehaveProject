@@ -18,6 +18,7 @@ class StaticLoggedOutHomeObject(BaseObject.BaseObject):
         Validates current page
         :return: True if username input is displayed
         """
+        self.soft_wait_until_visible(self.page_content)
         return self.is_visible(self.page_content)
 
     def navigate_to(self):

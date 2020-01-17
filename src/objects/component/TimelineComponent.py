@@ -9,6 +9,7 @@ class TimelineComponent(BaseObject.BaseObject):
     # Locators
     timeline = [By.CSS_SELECTOR, 'div[class=\'public-DraftEditorPlaceholder-root\']']
     tweets = [By.XPATH, '//div[@data-testid=\'tweet\']/div[2]/div[2]/span']
+    tweet_delete_button = [By.XPATH, '//div[@role=\'menu\']/div/div/div/div[@role=\'menuitem\']']
 
     # Url
     path = Paths.home_page
@@ -19,6 +20,7 @@ class TimelineComponent(BaseObject.BaseObject):
         :return: True if editor container is visible
         """
         log.write_line('Validating components visibility')
+        self.soft_wait_until_visible(self.timeline)
         return self.is_visible(self.timeline)
 
     def navigate_to(self):
@@ -27,17 +29,42 @@ class TimelineComponent(BaseObject.BaseObject):
         """
         self.navigate_to_by_url(self.url + self.path)
 
+    def format_locator_for_tweet_by_text(self, text):
+        """
+        Formats locator for tweet by its text
+        :param text: Tweet text to search for
+        """
+        return [By.XPATH,
+                '//div[@data-testid=\'tweet\']/div[2]/div[2]/span[text()=\''
+                + text
+                + '\']']
+
     def is_tweet_present(self, text):
         """
         Checks if given tweet by text is present on timeline
-        :text: Tweet text to search for
+        :param text: Tweet text to search for
         """
         log.write_line('Checking if given tweet is present on timeline by text: ' + text)
-        self.wait_until_visible(self.tweets)
-        all_tweets = self.find_elements(self.tweets)
-        for tweet in all_tweets:
-            if text in tweet.text:
-                log.write_line('Given tweet is present on timeline')
-                return True
-        log.write_line('Given tweet is not present on timeline')
-        return False
+        self.soft_wait_until_visible(self.tweets)
+        return self.is_visible(self.format_locator_for_tweet_by_text(text))
+
+    def click_tweet_delete_button(self):
+        """
+        Clicks tweet delete button, will only be visible if menu has been expanded after clicking caret
+        """
+        log.write_line('Clicking \'Delete\' button on tweet')
+        self.click(self.tweet_delete_button)
+
+    def click_tweet_caret_button_by_text(self,text):
+        """
+        Clicks on caret button on tweet found by its text
+        :param text: Tweet text to search for
+        """
+        tweet_caret_locator = [By.XPATH,
+                               '//div[@data-testid=\'tweet\']/div[2]/div[2]/span[text()=\''
+                               + text
+                               + '\']/../../div/div[2]/div']
+        self.click(tweet_caret_locator)
+
+
+

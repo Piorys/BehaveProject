@@ -20,6 +20,7 @@ class PostCreateComponent(BaseObject.BaseObject):
         :return: True if editor container is visible
         """
         log.write_line('Validating components visibility')
+        self.soft_wait_until_visible(self.editor_container)
         return self.is_visible(self.editor_container)
 
     def navigate_to(self):
