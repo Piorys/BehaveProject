@@ -5,8 +5,8 @@ from src.data import Account
 
 
 # Page Objects
-static_logged_out_homepage = StaticLoggedOutHomePage.StaticLoggedOutHomePage()
-login_page = LoginPage.LoginPage()
+static_logged_out_homepage = StaticLoggedOutHomePage.StaticLoggedOutHomeObject()
+login_page = LoginPage.LoginObject()
 
 
 @given('I am logged in on main page')

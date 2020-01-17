@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
 
-from src.objects.page import BasePage
+from src.objects import BaseObject
 from src.helpers import Logger as log
+from src.data import Paths
 
-
-class LoginPage(BasePage.BasePage):
+class LoginObject(BaseObject.BaseObject):
 
     # Locators
     username_input = [By.XPATH,'//input[contains(@class,\'js-username-field\')]']
@@ -12,7 +12,7 @@ class LoginPage(BasePage.BasePage):
     login_button = [By.CSS_SELECTOR, 'button[type=\'submit\'][class*=\'EdgeButton\']']
 
     # Url
-    url = '/login'
+    path = Paths.login_page
 
     def validate_page(self):
         """
@@ -25,7 +25,7 @@ class LoginPage(BasePage.BasePage):
         """
         Navigates to current page
         """
-        self.navigate_to_by_url(self.url)
+        self.navigate_to_by_url(self.url+self.path)
 
     def fill_username(self, username):
         """

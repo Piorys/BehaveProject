@@ -4,7 +4,7 @@ from selenium.common.exceptions import TimeoutException
 from src.config import TestConf
 
 
-class BasePage(object):
+class BaseObject(object):
     """ Page objects are to inherit from BasePage """
 
     driver = TestConf.driver
@@ -30,7 +30,7 @@ class BasePage(object):
     def navigate_to_by_url(self, url):
         self.driver.get(url)
 
-    def is_visible(self, locator, timeout=1):
+    def is_visible(self, locator, timeout=TestConf.timeout):
         try:
             WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located(locator))
             return True

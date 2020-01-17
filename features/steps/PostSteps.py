@@ -1,5 +1,8 @@
 from behave import *
+from src.objects.component import PostCreateComponent
 
+# Page Objects
+post_create_component = PostCreateComponent.PostCreateComponent()
 
 @when(u'I create a new tweet')
 def step_impl(context):
@@ -9,3 +12,8 @@ def step_impl(context):
 @then(u'I can see new tweet should be visible on my personal feed')
 def step_impl(context):
     pass
+
+
+@then(u'I can see widget for tweet creation')
+def step_impl(context):
+    assert post_create_component.validate_component()
