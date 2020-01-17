@@ -1,0 +1,1 @@
+standard_text = "Lorem Ipsum dolor sit amet"

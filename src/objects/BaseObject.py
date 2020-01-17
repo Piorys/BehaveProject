@@ -16,6 +16,9 @@ class BaseObject(object):
     def find_element(self, locator):
         return self.driver.find_element(locator[0], locator[1])
 
+    def find_elements(self, locator):
+        return self.driver.find_elements(locator[0], locator[1])
+
     def wait_until_visible(self, locator, timeout=TestConf.timeout):
         WebDriverWait(self.driver, timeout).until(ec.visibility_of_element_located((locator[0], locator[1])))
 
@@ -41,3 +44,4 @@ class BaseObject(object):
         self.wait_until_visible(locator)
         self.wait_until_clickable(locator)
         self.find_element(locator).click()
+
