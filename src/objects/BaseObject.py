@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
@@ -50,6 +52,16 @@ class BaseObject(object):
             return False
 
     def click(self, locator):
+        for x in range(TestConf.timeout):
+            try:
+                self.wait_until_visible(locator)
+                self.wait_until_clickable(locator)
+                self.find_element(locator).click()
+                break
+            except Exception:
+                time.sleep(1)
+                continue
+
+    def clear_field(self, locator):
         self.wait_until_visible(locator)
-        self.wait_until_clickable(locator)
-        self.find_element(locator).click()
+        self.find_element(locator).clear()
