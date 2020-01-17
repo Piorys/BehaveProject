@@ -1,5 +1,6 @@
 from src.helpers import Logger
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from src.objects.component import PostCreateComponent, TimelineComponent, DeleteConfirmationModalComponent, \
     NavigationBarComponent, EditProfileComponent
@@ -7,6 +8,7 @@ from src.objects.page import StaticLoggedOutHomePage, LoginPage, ProfilePage
 
 from src.data import Post
 from src.helpers import ScreenshotHelper
+from src.config import TestConf
 
 
 def before_all(context):
@@ -19,7 +21,11 @@ def after_all(context):
 
 
 def before_scenario(context, scenario):
-    context.driver = webdriver.Chrome()
+    options = Options()
+    if TestConf.headless:
+        options.add_argument("--headless")
+    options.add_argument("--window-size=1920x1080")
+    context.driver = webdriver.Chrome(chrome_options=options)
 
     # Component objects
     context.post_create_component = PostCreateComponent.PostCreateComponent(context)
