@@ -4,7 +4,7 @@ import pathlib
 from src.config import TestConf
 from src.helpers import Timestamp as time
 
-root = str(pathlib.Path(__file__).parent.absolute())+'/../../'
+root = str(pathlib.Path(__file__).parent.absolute()) + '/../../'
 
 
 def create_output_dir(output_dir):
@@ -78,6 +78,5 @@ def write_line(line, output_dir=TestConf.output_dir, logger_filename=TestConf.lo
     :param output_dir: - Name of directory where output should be stored
     :param logger_filename: name of the logger file
     """
-    with open(root + output_dir+logger_filename, 'a') as f:
-        f.write(time.now()+line)
-
+    with open(root + output_dir + logger_filename, 'a') as f:
+        f.write(time.now() + line + '\n')
